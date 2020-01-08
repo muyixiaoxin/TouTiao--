@@ -1,6 +1,11 @@
 <template>
   <div id="app">
+    <p class="color">hellow world</p>
     <router-view></router-view>
+    <p class="iconfont icon-bluetooth_link color"></p>
+    <p class="iconfont color icon-erbihouke"></p>
+    <p class="iconfont color icon-shengzhike"></p>
+    <p class="iconfont color icon-bluetoothon"></p>
     <van-button type="default">默认按钮</van-button>
     <van-button type="primary">主要按钮</van-button>
     <van-button type="info">信息按钮</van-button>
@@ -19,5 +24,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang='less'>
+@import url("~@/styles/variables.less");
+
+.color {
+  color: @color-primary;
+  font-size: @fontsize;
+}
 </style>

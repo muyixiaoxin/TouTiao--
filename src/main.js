@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 
 import './utils/register-vant.js'
+
+import 'amfe-flexible'
 // import { Cell, CellGroup, Button } from 'vant'
 
 // Vue
