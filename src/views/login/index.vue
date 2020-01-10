@@ -17,9 +17,9 @@
           round
           type="primary"
           class="send"
-          @click="sendCode"
+       @click="sendCode"
         >发送验证码</van-button>
-        <van-count-down slot="button" :time="1000*60" v-else format=" ss s" />
+        <van-count-down slot="button" :time="1000*6" v-else format=" ss s"  @finish = "isCountDownShow: false"/>
       </van-field>
     </van-cell-group>
     <div class="loginButton">
@@ -30,7 +30,7 @@
 
 <script>
 // import request from '@/utils/request.js'
-import { login, sendCode } from '@/api/user'
+import { login, getCode } from '@/api/user'
 
 export default {
   name: 'loginPage',
@@ -71,19 +71,20 @@ export default {
         this.$toast.success('登录成功')
       } catch (err) {
         // 失败时
-        console.log(err)
+        console.log(err, '登录失败')
         this.$toast.fail('登录失败,手机号或验证码错误!')
       }
       // 4.根据后台 返回结果执行后续操作
     },
-    async sendCode () {
-      // 1.验证手机号
-      const { mobile } = this.user
-      // 2.请求发送短信
-      const res = await sendCode(mobile)
-      console.log(res)
 
-      // 3.收到响应
+    async sendCode () {
+      const { mobile } = this.user
+      // 1.验证手机号
+      // 2.请求发送短信
+      const res = await getCode(mobile)
+      console.log(res)
+      // 3.收到响应 显示倒计时
+      this.isCountDownShow = true
     }
   }
 }

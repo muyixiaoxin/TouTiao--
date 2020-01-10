@@ -15,10 +15,10 @@ export const login = data => {
     data// body 请求体参数   data=data
   })
 }
-export const sendCode = mobile => {
+export const getCode = mobile => {
   return request({
-    method: 'POST',
-    url: `/app/v1_0/sms/codes/:${mobile}`
+    method: 'GET',
+    url: `/app/v1_0/sms/codes/${mobile}`
 
   })
 }
