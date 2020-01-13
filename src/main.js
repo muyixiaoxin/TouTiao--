@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// 加载验证插件的初始配置
+// 引入验证插件的初始配置
+import './utils/validation'
+// 加载 vant 组件
 import './utils/register-vant.js'
 // REM适配：动态设置 html 标签字体大小
 import 'amfe-flexible'
