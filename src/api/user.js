@@ -15,10 +15,25 @@ export const login = data => {
     data// body 请求体参数   data=data
   })
 }
+// 获取验证码
 export const getCode = mobile => {
   return request({
     method: 'GET',
     url: `/app/v1_0/sms/codes/${mobile}`
 
+  })
+}
+// 获取当前 登录用户的信息
+export const getUserInfo = () => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user'
+  })
+}
+// 获取当前指定用户的信息
+export const getUserById = userId => {
+  return request({
+    method: 'GET',
+    url: `/app/v1_0/users/${userId}`
   })
 }
