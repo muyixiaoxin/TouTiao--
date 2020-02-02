@@ -1,7 +1,7 @@
 <template>
   <div class="user-container">
     <!-- 导航栏 -->
-    <van-nav-bar :title="user.name" left-arrow />
+    <van-nav-bar :title="user.name" left-arrow @click-left="$router.back()"/>
     <!-- /导航栏 -->
 
     <!-- 用户信息 -->
@@ -47,9 +47,14 @@
     <!-- /用户信息 -->
 
     <!-- 文章列表 -->
-    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-      <van-cell v-for="item in list" :key="item" :title="item" />
-    </van-list>
+<van-list
+  v-model="loading"
+  :finished="finished"
+  finished-text="没有更多了"
+  @load="onLoad"
+>
+  <van-cell v-for="(item,index) in list" :key="index" :title="item.title" />
+</van-list>
     <!-- /文章列表 -->
   </div>
 </template>
@@ -87,20 +92,22 @@ export default {
         console.log(err)
       }
     },
-
     async onLoad () {
-      // 1. 请求获取数据
+      // 请求获取数据
       const { data } = await getArticlesByUser(this.$route.params.userId, {
-        page: this.page, // 可选的，默认是第 1 页
-        per_page: 20 // 可选的，默认每页 10 条
+        page: this.page,
+        per_page: 20
       })
-      // 2. 把数据添加到列表中
+      // 把获取得数据添加到列表中
       const { results } = data.data
-      console.log(results)
-      this.list.push(...results.results)
-      // 3. 加载状态结束
+      this.list.push(...results)
+      console.log(data)
+
+      // this.list.push(...data.data.results)
+      // 加载状态结束
       this.loading = false
-      // 4. 判断数据是否全部加载完毕
+
+      // 数据全部加载完成
       if (results.length) {
         this.page++
       } else {

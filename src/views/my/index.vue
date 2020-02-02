@@ -2,7 +2,7 @@
   <div class="my-container">
     <!-- 已登录：用户信息 -->
     <div class="user-info-wrap" v-if="$store.state.user">
-      <div class="base-info-wrap">
+      <div class="base-info-wrap" @click="$router.push('/user/' + user.id)">
         <div class="avatar-title-wrap">
           <van-image class="avatar" round fit="cover" :src="user.photo" />
           <div class="title">{{user.name}}</div>

@@ -30,7 +30,7 @@ export const getUserInfo = () => {
     url: '/app/v1_0/user'
   })
 }
-// 获取当前指定用户的信息
+// 获取指定用户的信息
 export const getUserById = userId => {
   return request({
     method: 'GET',

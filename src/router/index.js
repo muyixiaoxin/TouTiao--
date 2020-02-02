@@ -21,7 +21,7 @@ const routes = [
     component: () => import('@/views/tab-bar'),
     children: [
       {
-        path: ' ', // 默认子路由
+        path: '', // 默认子路由
         name: 'home',
         component: () => import('@/views/home')
       },
